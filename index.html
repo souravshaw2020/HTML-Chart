@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Temperature Data</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/canvasjs.min.js"
+    ></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="bar-chart"></div>
+      <br /><br />
+      <div id="candle-chart"></div>
+      <br /><br />
+      <div id="candle-comparison"></div>
+      <br /><br />
+    </div>
+    <script>
+      anychart.onDocumentReady(function () {
+        var data = {
+          header: ["Month", "High"],
+          rows: [
+            ["January", 21],
+            ["February", 24],
+            ["March", 30],
+            ["April", 37],
+            ["May", 40],
+            ["June", 39],
+            ["July", 35],
+            ["August", 34],
+            ["September", 34],
+            ["October", 33],
+            ["November", 28],
+            ["December", 23]
+          ]
+        };
+        var chart = anychart.bar();
+        chart.data(data);
+        chart.title("Highest Monthly Temperature of Delhi");
+        chart.container("bar-chart");
+        chart.draw();
+      });
+
+      var chart = new CanvasJS.Chart("candle-chart", {
+        title: {
+          text: "High-Low As a Candle Stick Chart"
+        },
+        zoomEnabled: true,
+        axisY: {
+          title: "Temperature"
+        },
+        axisX: {
+          interval: 2,
+          intervalType: "month",
+          valueFormatString: "MMM"
+        },
+        data: [
+          {
+            type: "candlestick",
+            showInLegend: true,
+            name: "Delhi Temperature",
+            dataPoints: [
+              { x: new Date(2021, 01, 01), y: [11, 21, 8, 16] },
+              { x: new Date(2021, 02, 01), y: [13, 24, 10, 20] },
+              { x: new Date(2021, 03, 01), y: [18, 30, 16, 27] },
+              { x: new Date(2021, 04, 01), y: [25, 37, 21, 31] },
+              { x: new Date(2021, 05, 01), y: [29, 40, 26, 38] },
+              { x: new Date(2021, 06, 01), y: [30, 39, 28, 37] },
+              { x: new Date(2021, 07, 01), y: [29, 35, 27, 32] },
+              { x: new Date(2021, 08, 01), y: [29, 34, 26, 32] },
+              { x: new Date(2021, 09, 01), y: [28, 34, 25, 32] },
+              { x: new Date(2021, 10, 01), y: [21, 33, 19, 29] },
+              { x: new Date(2021, 11, 01), y: [18, 28, 13, 25] },
+              { x: new Date(2021, 12, 01), y: [10, 23, 8, 19] }
+            ]
+          }
+        ]
+      });
+      chart.render();
+
+      var chartcomparison = new CanvasJS.Chart("candle-comparison", {
+        title: {
+          text: "Delhi - Houston Temperature Comparison"
+        },
+        zoomEnabled: true,
+        axisY: {
+          title: "Temperature"
+        },
+        axisX: {
+          interval: 2,
+          intervalType: "month",
+          valueFormatString: "MMM"
+        },
+        data: [
+          {
+            type: "candlestick",
+            showInLegend: true,
+            name: "Delhi Temp.",
+            color: "green",
+            dataPoints: [
+              { x: new Date(2021, 01, 01), y: [11, 21, 8, 16] },
+              { x: new Date(2021, 02, 01), y: [13, 24, 10, 20] },
+              { x: new Date(2021, 03, 01), y: [18, 30, 16, 27] },
+              { x: new Date(2021, 04, 01), y: [25, 37, 21, 31] },
+              { x: new Date(2021, 05, 01), y: [29, 40, 26, 38] },
+              { x: new Date(2021, 06, 01), y: [30, 39, 28, 37] },
+              { x: new Date(2021, 07, 01), y: [29, 35, 27, 32] },
+              { x: new Date(2021, 08, 01), y: [29, 34, 26, 32] },
+              { x: new Date(2021, 09, 01), y: [28, 34, 25, 32] },
+              { x: new Date(2021, 10, 01), y: [21, 33, 19, 29] },
+              { x: new Date(2021, 11, 01), y: [18, 28, 13, 25] },
+              { x: new Date(2021, 12, 01), y: [10, 23, 8, 19] }
+            ]
+          },
+          {
+            type: "candlestick",
+            showInLegend: true,
+            name: "Houston Temp.",
+            color: "red",
+            dataPoints: [
+              { x: new Date(2021, 01, 01), y: [10, 16, 7, 13] },
+              { x: new Date(2021, 02, 01), y: [12, 18, 9, 17] },
+              { x: new Date(2021, 03, 01), y: [15, 21, 13, 19] },
+              { x: new Date(2021, 04, 01), y: [17, 25, 16, 22] },
+              { x: new Date(2021, 05, 01), y: [22, 28, 20, 25] },
+              { x: new Date(2021, 06, 01), y: [24, 31, 23, 29] },
+              { x: new Date(2021, 07, 01), y: [27, 33, 24, 32] },
+              { x: new Date(2021, 08, 01), y: [25, 33, 24, 30] },
+              { x: new Date(2021, 09, 01), y: [23, 30, 22, 27] },
+              { x: new Date(2021, 10, 01), y: [19, 26, 17, 25] },
+              { x: new Date(2021, 11, 01), y: [14, 21, 12, 18] },
+              { x: new Date(2021, 12, 01), y: [11, 17, 9, 15] }
+            ]
+          }
+        ]
+      });
+      chartcomparison.render();
+    </script>
+  </body>
+</html>
